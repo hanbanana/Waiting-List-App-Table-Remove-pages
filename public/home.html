@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./styleHome.css">
+
+    <title>Waiting List</title>
+</head>
+
+<body>
+
+    <div class="mainContainer">
+
+        <div class="jumbotron jumbotron-fluid text-center">
+            <div class="container">
+                <h1 id="heading">Yoolp Restaurant Waiting List</h1>
+                <br>
+                <div class="text-center">
+                    <a href="/reserve"><button type="button" class="btn btn-md btn-danger"><i class="fa fa-user-plus"
+                                style="font-size:36px"></i></button></a>
+                    <button type="button" id="clear" class="btn btn-md btn-warning">Clear All<i class="fa fa-remove"
+                            style="font-size:36px;color:red"></i></button>
+                </div>
+                </p>
+            </div>
+        </div>
+
+
+        <br>
+        <div class="card text-center" id="mainCard">
+            <!-- <div class="card-header">
+                Waiting List
+            </div> -->
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone#</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Done</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Insert movie rows here -->
+                </tbody>
+            </table>
+
+        </div>
+
+        <br><br>
+        <footer class="footer text-center">
+            <div class="container" id="footerId">
+                <p>Built by H.</p>
+                <p><a href="#" id="clearAll">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a
+                        href="/api/waitlist">API Wait List</a> | <a
+                        href="https://github.com/afhaque/HotRestaurant">GitHub Repo</a></p>
+            </div>
+        </footer>
+
+
+    </div>
+
+
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js">
+    </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        var createRow = function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var tableNumber = i + 1;
+                // Get reference to existing tbody element, create a new table row element
+                var tBody = $("tbody");
+                var tRow = $("<tr>");
+                tRow.attr("id", "table-" + i + 1);
+
+                // Methods run on jQuery selectors return the selector they we run on
+                // This is why we can create and save a reference to a td in the same statement we update its text
+                var tableNumberTd = $("<td>").html("<input type='checkbox' class='cbox4' value='fourth_checkbox'> <span>" + tableNumber + "</span>");
+                var customerNameTd = $("<td id='nameId'>").html("<input type='checkbox' class='cbox4' value='fourth_checkbox'> <span>" + data[i].customerName + "</span>");
+                var phoneNumberTd = $("<td>").html("<input type='checkbox' class='cbox4' value='fourth_checkbox'><span>" + data[i].phoneNumber + "</span>");
+                var customerEmailTd = $("<td>").html("<input type='checkbox' class='cbox4' value='fourth_checkbox'><span>" + data[i].customerEmail + "</span>");
+                var customerTimeTd = $("<td>").html("<input type='checkbox' class='cbox4' value='fourth_checkbox'><span>" + data[i].reserveTime + "</span>");
+                var doneBoxTd = $("<td>").html("<input type='checkbox' class='cbox4' value='fourth_checkbox'> <span id='doneSpan'>" + data[i].customerName + " " + data[i].phoneNumber + " " + data[i].customerEmail + "</span>");
+                // Append the newly created table data to the table row
+                tRow.append(tableNumberTd, customerNameTd, phoneNumberTd, customerEmailTd, customerTimeTd, doneBoxTd);
+                // Append the table row to the table body
+                tBody.append(tRow);
+
+                // $("label").toggle(
+                //     function () { $("label").css({ "text-decoration": "line-through" }); },
+                //     function () { $("label").css({ "text-decoration": "none" }); },
+                // );
+
+                // $(".cbox4").click(function () {
+                //     $("#nameId").css("text-decoration", "line-through");
+
+                // });
+
+                // $("#nameId").click(function () {
+                //     $("#nameId label").css("text-decoration", "line-through");
+
+                // });
+
+                // $(":checkbox").on("change", function () {
+                //     var that = this;
+                //     $(this).parent().css("background-color", function () {
+                //         return that.checked ? "#ff0000" : "";
+                //     });
+                // });
+
+            };
+        };
+
+        // $(function () {
+        //     var $curParent, Content;
+        //     $(document).delegate("label", "click", function () {
+        //         if ($(this).closest("l").length) {
+        //             Content = $(this).parent("l").html();
+        //             $curParent = $(this).closest("l");
+        //             $(Content).insertAfter($curParent);
+        //             $(this).closest("l").remove();
+        //         }
+        //         else {
+        //             $(this).wrapAll("<l />");
+        //         }
+        //     });
+        // });
+
+
+        // Strike-through on click https://stackoverflow.com/questions/44516905/strike-through-on-click
+        $(function () {
+            var $curParent, Content;
+            $(document).delegate("span", "click", function () {
+                if ($(this).closest("s").length) {
+                    Content = $(this).parent("s").html();
+                    $curParent = $(this).closest("s");
+                    $(Content).insertAfter($curParent);
+                    $(this).closest("s").remove();
+                }
+                else {
+                    $(this).wrapAll("<s />");
+                }
+            });
+        });
+
+        function runTableQuery() {
+            var currentURL = window.location.origin;
+
+            $.ajax({ url: currentURL + "/api/tables", method: "GET" })
+                .then(function (tableData) {
+                    createRow(tableData);
+                })
+        };
+
+        function clearTable() {
+            var currentURL = window.location.origin;
+
+            $.ajax({ url: currentURL + "/api/clear", method: "POST" });
+        }
+
+        function clearTable() {
+            var currentURL = window.location.origin;
+
+            $.ajax({ url: currentURL + "/api/clear", method: "POST" });
+        }
+
+        $("#clear").on("click", function () {
+            alert("Clearing...");
+            clearTable();
+            location.reload();
+        });
+
+        $("#clearAll").on("click", function () {
+            alert("Clearing...");
+            clearTable();
+            location.reload();
+        });
+
+
+        runTableQuery();
+
+
+        // var checkBox = $("#table-" + i);
+
+        // function myFunction() {
+
+        //     var checkBox = $("#table-" + data[i] + 1)
+        //     var checkBox = $("#table-" + data[i]);
+        //     var text = document.getElementById("text");
+        //     if (checkBox.checked == true) {
+        //         checkBox.css("background-color", "#808080");
+        //     }
+        // }
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+
+
+body {
+    background-color: rgb(182, 2, 2);
+    font-family: 'Fredoka One', cursive;
+}
+
+.jumbotron {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: black;
+    margin-left: 40px;
+margin-right: 40px;
+margin-top: 20px;
+  
+}
+
+#heading {
+    color: rgb(255, 255, 0);
+}
+
+#formSection {
+    width: 400px;
+    height: 430px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.currentTimeButton {
+    margin-top: 7px;
+}
+
+a {
+    color: yellow;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        font-size: 25px;
+    }
+    
+    button {
+        font-size: 15px;
+    }
+    
+    .card {
+    
+        font-size: 10px;
+    }
+    
+    h5 {
+        font-size: 11px;
+    }
+    
+    
+    
+    };
